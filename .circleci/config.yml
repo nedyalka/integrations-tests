@@ -39,7 +39,7 @@ jobs:
           command: curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | sudo tar -zxvf- -C /usr/local/bin
       - run:
           name: Configure testspace client
-          command: testspace config url 06672ad55f6e63bbc07fc87cf33c9225d1407ace:@s2.testspace.com
+          command: testspace config url 682f2e7240d35a974daefbec910ac916ec4a53d7:@petar.stridespace.com
       - run:
           name: run tests
           command: |
@@ -52,7 +52,7 @@ jobs:
                             $TEST_FILES
       - run:
           name: Send reports to testspace
-          command: testspace --codecov /tmp/test-results/rspec.xml
+          command: testspace --link=codecov /tmp/test-results/rspec.xml
           when: always
       # collect reports
       - store_test_results:
