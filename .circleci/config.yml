@@ -35,6 +35,12 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
+          name: Get latest testspace client
+          command: curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | sudo tar -zxvf- -C /usr/local/bin
+      - run:
+          name: Configure testspace client
+          command: testspace config url 06672ad55f6e63bbc07fc87cf33c9225d1407ace:@s2.testspace.com
+      - run:
           name: run tests
           command: |
             mkdir /tmp/test-results
@@ -44,7 +50,10 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             $TEST_FILES
-
+      - run:
+          name: Send reports to testspace
+          command: testspace --codecov /tmp/test-results/rspec.xml
+          when: always
       # collect reports
       - store_test_results:
           path: /tmp/test-results
