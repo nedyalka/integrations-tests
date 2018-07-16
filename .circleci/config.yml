@@ -39,7 +39,7 @@ jobs:
           command: curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | sudo tar -zxvf- -C /usr/local/bin
       - run:
           name: Configure testspace client
-          command: testspace config url 682f2e7240d35a974daefbec910ac916ec4a53d7:@petar.stridespace.com
+          command: testspace config url 682f2e7240d35a974daefbec910ac916ec4a53d7:@http://6bf7f062.ngrok.io
       - run:
           name: run tests
           command: |
