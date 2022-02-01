@@ -36,10 +36,10 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: Get latest testspace client
-          command: curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | sudo tar -zxvf- -C /usr/local/bin
+          command: curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
       - run:
           name: Configure testspace client
-          command: testspace config url 43841bd43c4b773069f4a8e2ddabe7dffc9756af:@http://2d626b8cea63.ngrok.io
+          command: testspace config url f31da34bf690e30a6c0619135e0f1c9c6a43c1d3:@628c-212-5-158-168.ngrok.io
       - run:
           name: run tests
           command: |
